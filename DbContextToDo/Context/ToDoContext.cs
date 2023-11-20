@@ -7,10 +7,10 @@ namespace DbContextToDo.DataBase
     {
         public ToDoContext(DbContextOptions options) : base(options)
         {
-
+            
         }
         public DbSet<Todo> Todos => Set<Todo>();
-        public DbSet<Category> Categories { get; set; } //=> Set<Category>();
+        public DbSet<Category>  Categories { get; set; }//=> Set<Category>();//{ get; set; } => 
             
         
         

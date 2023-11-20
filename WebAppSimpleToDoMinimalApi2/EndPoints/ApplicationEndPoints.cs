@@ -44,6 +44,8 @@ namespace WebAppSimpleToDoMinimalApi2.ApplicationEndPoints
             app.MapDelete("todos/{id}", DeleteAsync);
             app.MapPut("todos/{id}/set-complete", SetComplete);
             app.MapPut("todos/{id}/set-uncomplete", SetUnComplete);
+
+            app.MapGet("categories", GetCategories);
         }
 
         public static void AddAppEndpointDependencyServices(this IServiceCollection services)
@@ -102,6 +104,13 @@ namespace WebAppSimpleToDoMinimalApi2.ApplicationEndPoints
             await context.SaveChangesAsync();
             return Results.NoContent();
         }
+
+        static async Task<IResult> GetCategories(ToDoContext context)
+        {
+            SeedDataForTest(context);
+            return Results.Ok(await context.Categories.AsNoTracking().ToListAsync());
+        }
+            
     }
     
     
